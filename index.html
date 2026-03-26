@@ -11,101 +11,118 @@
     :root {
       --red: #e8131a;
       --red-dark: #b50f15;
-      --silver: #c8c8c8;
-      --silver-light: #e8e8e8;
-      --black: #0a0a0a;
-      --dark: #111111;
-      --card: #181818;
-      --border: rgba(255,255,255,0.07);
+      --black: #111111;
+      --dark: #222222;
+      --gray: #666666;
+      --gray-light: #999999;
+      --bg: #f4f4f4;
+      --bg-card: #ffffff;
+      --bg-card2: #f8f8f8;
+      --border: #e2e2e2;
+      --gear: rgba(0,0,0,0.045);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--silver-light);
+      background: var(--bg);
+      color: var(--dark);
       font-family: 'Barlow', sans-serif;
       overflow-x: hidden;
     }
 
     /* ── HEADER ── */
     header {
-      position: relative;
-      background: #000;
-      border-bottom: 2px solid var(--red);
-      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 3px solid var(--red);
+      padding: 0 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 90px;
+      height: 80px;
       z-index: 100;
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--red), transparent);
-      opacity: 0.5;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
     }
 
     .logo img {
-      height: 150px;
+      height: 130px;
       object-fit: contain;
     }
 
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .logo-text span { color: var(--red); }
+
     nav a {
-      color: var(--silver);
+      color: var(--dark);
       text-decoration: none;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-left: 2rem;
       transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.2s;
     }
     nav a:hover { color: var(--red); }
+    nav a:hover::after { transform: scaleX(1); }
 
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 520px;
+      min-height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       overflow: hidden;
       padding: 4rem 2rem;
+      background: #fff;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,19,26,0.12) 0%, transparent 70%),
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 40px,
-          rgba(255,255,255,0.015) 40px,
-          rgba(255,255,255,0.015) 41px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 40px,
-          rgba(255,255,255,0.015) 40px,
-          rgba(255,255,255,0.015) 41px
-        );
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,19,26,0.07) 0%, transparent 70%);
+    }
+
+    /* Gear watermark in hero */
+    .hero-gear {
+      position: absolute;
+      right: -60px; bottom: -60px;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .hero-gear-left {
+      position: absolute;
+      left: -80px; top: -60px;
+      opacity: 0.04;
+      pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 760px;
+      max-width: 720px;
     }
 
     .hero-eyebrow {
@@ -113,33 +130,33 @@
       background: var(--red);
       color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      margin-bottom: 1.5rem;
+      padding: 0.3rem 1.1rem;
+      margin-bottom: 1.4rem;
       clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
     }
 
     .hero h1 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 800;
-      line-height: 1.05;
+      line-height: 1.0;
       text-transform: uppercase;
       letter-spacing: 0.02em;
-      color: #fff;
+      color: var(--black);
       margin-bottom: 1.2rem;
     }
 
     .hero h1 span { color: var(--red); }
 
     .hero p {
-      font-size: 1.15rem;
-      color: var(--silver);
-      line-height: 1.7;
-      max-width: 540px;
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 520px;
       margin: 0 auto 2.5rem;
     }
 
@@ -152,113 +169,190 @@
       color: #fff;
       text-decoration: none;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.9rem 2rem;
-      border-radius: 3px;
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.25);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
     }
-
     .wa-btn:hover {
       background: #1ebe5c;
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
     }
-
     .wa-btn svg { flex-shrink: 0; }
 
-    /* ── DIVIDER ── */
-    .divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--red) 30%, var(--red) 70%, transparent);
-      opacity: 0.35;
-      margin: 0 2rem;
+    /* ── RED STRIP DIVIDER ── */
+    .red-strip {
+      background: var(--red);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .red-strip span {
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .red-strip .dot {
+      width: 5px; height: 5px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
     }
 
-    /* ── INFO SECTION ── */
+    /* ── SECTION ── */
     .section {
       padding: 5rem 2rem;
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      color: var(--red);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      border-left: 3px solid var(--red);
+      padding-left: 0.6rem;
     }
 
     .section-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #fff;
-      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+      color: var(--black);
+      line-height: 1.1;
     }
 
     .section-title span { color: var(--red); }
 
     .section-sub {
-      color: var(--silver);
-      margin-bottom: 3rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
       font-size: 1rem;
+      line-height: 1.65;
     }
 
-    /* ── CARDS ── */
+    /* ── SERVICE CARDS ── */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.4rem;
     }
 
+    /* Gear SVG pattern as data URI for card bg */
     .card {
-      background: var(--card);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--red);
-      padding: 2rem 1.75rem;
-      border-radius: 2px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 8px;
+      padding: 2.2rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      right: -30px; bottom: -30px;
+      width: 160px; height: 160px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23000' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='28' fill='none' stroke='%23000' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23000' stroke-width='3'/%3E%3Crect x='46' y='3' width='8' height='14' rx='2' fill='%23000'/%3E%3Crect x='46' y='83' width='8' height='14' rx='2' fill='%23000'/%3E%3Crect x='3' y='46' width='14' height='8' rx='2' fill='%23000'/%3E%3Crect x='83' y='46' width='14' height='8' rx='2' fill='%23000'/%3E%3Crect x='13.5' y='12' width='8' height='14' rx='2' fill='%23000' transform='rotate(45 17.5 19)'/%3E%3Crect x='13.5' y='74' width='8' height='14' rx='2' fill='%23000' transform='rotate(-45 17.5 81)'/%3E%3Crect x='74.5' y='12' width='8' height='14' rx='2' fill='%23000' transform='rotate(-45 78.5 19)'/%3E%3Crect x='74.5' y='74' width='8' height='14' rx='2' fill='%23000' transform='rotate(45 78.5 81)'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      right: 60px; bottom: 20px;
+      width: 90px; height: 90px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23000' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='28' fill='none' stroke='%23000' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23000' stroke-width='3'/%3E%3Crect x='46' y='3' width='8' height='14' rx='2' fill='%23000'/%3E%3Crect x='46' y='83' width='8' height='14' rx='2' fill='%23000'/%3E%3Crect x='3' y='46' width='14' height='8' rx='2' fill='%23000'/%3E%3Crect x='83' y='46' width='14' height='8' rx='2' fill='%23000'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.04;
+      pointer-events: none;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.10);
     }
 
     .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon svg {
+      width: 52px;
+      height: 52px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .card h3 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
+      font-size: 1.35rem;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: #fff;
-      margin-bottom: 0.6rem;
+      color: var(--black);
+      margin-bottom: 0.55rem;
+      position: relative;
+      z-index: 1;
     }
 
     .card p {
-      color: var(--silver);
+      color: var(--gray);
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
     }
 
     /* ── INFO BAR ── */
     .info-bar {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem;
+      background: var(--black);
+      padding: 3.5rem 2rem;
     }
 
     .info-bar-inner {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.2rem;
     }
 
     .info-item {
@@ -268,55 +362,154 @@
     }
 
     .info-icon {
-      font-size: 1.6rem;
+      width: 40px; height: 40px;
+      background: rgba(232,19,26,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      margin-top: 2px;
+    }
+
+    .info-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .info-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--red);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .info-value {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 500;
       color: #fff;
+      line-height: 1.4;
+    }
+
+    /* ── LOCATIONS SECTION ── */
+    .locations-section {
+      padding: 5rem 2rem;
+      background: #fff;
+    }
+
+    .locations-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .location-chip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .location-chip svg {
+      width: 16px; height: 16px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .location-chip span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
     }
 
     /* ── CTA BANNER ── */
     .cta-banner {
-      background: linear-gradient(135deg, #1a0000 0%, #2a0507 50%, #0a0a0a 100%);
-      border-top: 2px solid var(--red);
-      border-bottom: 2px solid var(--red);
-      padding: 4rem 2rem;
+      background: var(--red);
+      padding: 4.5rem 2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 360px; height: 360px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='28' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Crect x='46' y='3' width='8' height='14' rx='2' fill='%23fff'/%3E%3Crect x='46' y='83' width='8' height='14' rx='2' fill='%23fff'/%3E%3Crect x='3' y='46' width='14' height='8' rx='2' fill='%23fff'/%3E%3Crect x='83' y='46' width='14' height='8' rx='2' fill='%23fff'/%3E%3Crect x='13.5' y='12' width='8' height='14' rx='2' fill='%23fff' transform='rotate(45 17.5 19)'/%3E%3Crect x='13.5' y='74' width='8' height='14' rx='2' fill='%23fff' transform='rotate(-45 17.5 81)'/%3E%3Crect x='74.5' y='12' width='8' height='14' rx='2' fill='%23fff' transform='rotate(-45 78.5 19)'/%3E%3Crect x='74.5' y='74' width='8' height='14' rx='2' fill='%23fff' transform='rotate(45 78.5 81)'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.08;
+      pointer-events: none;
     }
 
     .cta-banner h2 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 800;
       text-transform: uppercase;
       color: #fff;
       margin-bottom: 0.6rem;
+      position: relative;
     }
 
     .cta-banner p {
-      color: var(--silver);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 2rem;
       font-size: 1.05rem;
+      position: relative;
+    }
+
+    .cta-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #fff;
+      color: var(--red);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+      position: relative;
+    }
+
+    .cta-wa-btn:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: #000;
-      border-top: 1px solid var(--border);
+      background: #0a0a0a;
+      border-top: 3px solid var(--red);
       padding: 2rem;
       text-align: center;
       color: #555;
@@ -326,25 +519,26 @@
     footer span { color: var(--red); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       header { padding: 0 1rem; }
       nav { display: none; }
       .section { padding: 3.5rem 1.25rem; }
+      .red-strip { gap: 1rem; }
     }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .hero-content > * {
-      animation: fadeUp 0.6s ease both;
+      animation: fadeUp 0.55s ease both;
     }
-    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-    .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-    .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.08s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.34s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.48s; }
   </style>
 </head>
 <body>
@@ -352,11 +546,12 @@
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <img src="logo.png" alt="ABS Tyres"/>
+      <img src="logo.png" alt="ABS Tyres" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+      <div class="logo-text" style="display:none;">ABS <span>Tyres</span></div>
     </div>
     <nav>
       <a href="#services">Services</a>
-      <a href="#info">Info</a>
+      <a href="#locations">Locations</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -364,13 +559,36 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
+    <!-- Gear watermarks -->
+    <svg class="hero-gear" width="380" height="380" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#000" stroke-width="3"/>
+      <circle cx="50" cy="50" r="28" stroke="#000" stroke-width="3"/>
+      <circle cx="50" cy="50" r="10" stroke="#000" stroke-width="3"/>
+      <rect x="46" y="3" width="8" height="14" rx="2" fill="#000"/>
+      <rect x="46" y="83" width="8" height="14" rx="2" fill="#000"/>
+      <rect x="3" y="46" width="14" height="8" rx="2" fill="#000"/>
+      <rect x="83" y="46" width="14" height="8" rx="2" fill="#000"/>
+      <rect x="13.5" y="12" width="8" height="14" rx="2" fill="#000" transform="rotate(45 17.5 19)"/>
+      <rect x="13.5" y="74" width="8" height="14" rx="2" fill="#000" transform="rotate(-45 17.5 81)"/>
+      <rect x="74.5" y="12" width="8" height="14" rx="2" fill="#000" transform="rotate(-45 78.5 19)"/>
+      <rect x="74.5" y="74" width="8" height="14" rx="2" fill="#000" transform="rotate(45 78.5 81)"/>
+    </svg>
+    <svg class="hero-gear-left" width="280" height="280" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="42" stroke="#000" stroke-width="3"/>
+      <circle cx="50" cy="50" r="28" stroke="#000" stroke-width="3"/>
+      <circle cx="50" cy="50" r="10" stroke="#000" stroke-width="3"/>
+      <rect x="46" y="3" width="8" height="14" rx="2" fill="#000"/>
+      <rect x="46" y="83" width="8" height="14" rx="2" fill="#000"/>
+      <rect x="3" y="46" width="14" height="8" rx="2" fill="#000"/>
+      <rect x="83" y="46" width="14" height="8" rx="2" fill="#000"/>
+    </svg>
+
     <div class="hero-content">
       <div class="hero-eyebrow">Your Local Tyre Specialists</div>
       <h1>Drive Safe.<br/><span>Drive Confident.</span></h1>
       <p>Professional tyre fitting, balancing, and vehicle servicing. Quality brands at competitive prices — get in touch today for a fast quote.</p>
       <a class="wa-btn" href="https://wa.me/447421138725" target="_blank" rel="noopener">
-        <!-- WhatsApp icon -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         Chat on WhatsApp
@@ -378,108 +596,214 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- RED STRIP -->
+  <div class="red-strip">
+    <span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Open 24/7
+    </span>
+    <div class="dot"></div>
+    <span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 0 0 .22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      074 2113 8725
+    </span>
+    <div class="dot"></div>
+    <span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Southampton · Salisbury · Hamble · New Forest
+    </span>
+  </div>
 
   <!-- SERVICES -->
   <section class="section" id="services">
-    <h2 class="section-title">Our <span>Services</span></h2>
-    <p class="section-sub">Everything your vehicle needs, all in one place.</p>
+    <div class="section-header">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Our <span>Services</span></h2>
+      <p class="section-sub">Everything your vehicle needs, all in one place.</p>
+    </div>
     <div class="cards">
+
+      <!-- Tyre Fitting -->
       <div class="card">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="20"/>
+            <circle cx="26" cy="26" r="10"/>
+            <circle cx="26" cy="26" r="3"/>
+            <line x1="26" y1="6" x2="26" y2="16"/>
+            <line x1="26" y1="36" x2="26" y2="46"/>
+            <line x1="6" y1="26" x2="16" y2="26"/>
+            <line x1="36" y1="26" x2="46" y2="26"/>
+          </svg>
+        </div>
         <h3>Tyre Fitting</h3>
         <p>Fast and professional fitting for all vehicle types. We carry a wide range of budget, mid-range, and premium tyre brands.</p>
       </div>
+
+      <!-- Wheel Balancing -->
       <div class="card">
-        <div class="card-icon">⚖️</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="20"/>
+            <circle cx="26" cy="26" r="6"/>
+            <line x1="26" y1="6" x2="26" y2="20"/>
+            <line x1="26" y1="32" x2="26" y2="46"/>
+            <line x1="6" y1="26" x2="20" y2="26"/>
+            <line x1="32" y1="26" x2="46" y2="26"/>
+            <line x1="12" y1="12" x2="21" y2="21"/>
+            <line x1="31" y1="31" x2="40" y2="40"/>
+            <line x1="40" y1="12" x2="31" y2="21"/>
+            <line x1="21" y1="31" x2="12" y2="40"/>
+          </svg>
+        </div>
         <h3>Wheel Balancing</h3>
         <p>State-of-the-art balancing equipment to eliminate vibration and ensure a smooth, safe ride every time.</p>
       </div>
-            <div class="card">
-        <div class="card-icon">🚗</div>
+
+      <!-- Puncture Repair -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <path d="M26 8 C16 8 8 16 8 26 C8 36 16 44 26 44 C36 44 44 36 44 26"/>
+            <path d="M38 8 L44 14 M44 8 L38 14"/>
+            <circle cx="26" cy="26" r="8"/>
+            <path d="M22 26 L25 29 L30 22"/>
+          </svg>
+        </div>
         <h3>Puncture Repair</h3>
         <p>Quick puncture diagnosis and repair while you wait. We'll have you back on the road in no time.</p>
       </div>
-            <div class="card">
-        <div class="card-icon">🚗</div>
+
+      <!-- All Brand Tyres -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <rect x="8" y="14" width="36" height="26" rx="4"/>
+            <line x1="8" y1="22" x2="44" y2="22"/>
+            <line x1="18" y1="14" x2="18" y2="40"/>
+            <path d="M24 31 L27 34 L34 26"/>
+          </svg>
+        </div>
         <h3>All Brand Tyres</h3>
-        <p>Quick puncture diagnosis and repair while you wait. We'll have you back on the road in no time.</p>
+        <p>All major vehicle tyres available. From economy to premium performance — we stock them all.</p>
       </div>
+
+      <!-- Professional Fitter -->
       <div class="card">
-        <div class="card-icon">🚗</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="16" r="8"/>
+            <path d="M10 44 C10 34 18 28 26 28 C34 28 42 34 42 44"/>
+            <path d="M32 30 L38 36 M38 30 C40 32 40 36 38 38 C36 40 32 40 30 38"/>
+          </svg>
+        </div>
         <h3>Professional Fitter</h3>
-        <p>Quick puncture diagnosis and repair while you wait. We'll have you back on the road in no time.</p>
+        <p>Qualified and experienced engineers ensuring every fitting is done safely and to the highest standard.</p>
       </div>
-            <div class="card">
-        <div class="card-icon">🚗</div>
-        <h3>24/7 Emergency Services</h3>
-        <p>Quick puncture diagnosis and repair while you wait. We'll have you back on the road in no time.</p>
-      </div>
+
+      <!-- 24/7 Emergency -->
       <div class="card">
-        <div class="card-icon">❄️</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="18"/>
+            <polyline points="26 14 26 26 34 30"/>
+            <path d="M26 8 L26 4 M26 48 L26 44 M8 26 L4 26 M48 26 L44 26"/>
+          </svg>
+        </div>
+        <h3>24/7 Emergency Services</h3>
+        <p>Emergency tyre replacement anywhere, anytime. Our mobile vans come directly to your location.</p>
+      </div>
+
+      <!-- Seasonal Tyres -->
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="10"/>
+            <line x1="26" y1="6" x2="26" y2="14"/>
+            <line x1="26" y1="38" x2="26" y2="46"/>
+            <line x1="6" y1="26" x2="14" y2="26"/>
+            <line x1="38" y1="26" x2="46" y2="26"/>
+            <line x1="11.7" y1="11.7" x2="17.3" y2="17.3"/>
+            <line x1="34.7" y1="34.7" x2="40.3" y2="40.3"/>
+            <line x1="40.3" y1="11.7" x2="34.7" y2="17.3"/>
+            <line x1="17.3" y1="34.7" x2="11.7" y2="40.3"/>
+          </svg>
+        </div>
         <h3>Seasonal Tyres</h3>
         <p>Summer, winter, and all-season options available. We'll recommend the right tyre for your driving conditions.</p>
       </div>
+
     </div>
   </section>
 
+  <!-- LOCATIONS -->
+  <div class="locations-section" id="locations">
+    <div class="locations-inner">
+      <div class="section-eyebrow">Where To Find Us</div>
+      <h2 class="section-title">Our <span>Locations</span></h2>
+      <p class="section-sub">Serving multiple areas across the South of England.</p>
+      <div class="locations-grid">
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Southampton</span>
+        </div>
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Salisbury</span>
+        </div>
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Hamble</span>
+        </div>
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Leamington</span>
+        </div>
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>New Forest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- INFO BAR -->
-  <div class="info-bar" id="info">
+  <div class="info-bar">
     <div class="info-bar-inner">
       <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">Southampton</div>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-      </div>
-            <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">Salisbury</div>
-        </div>
-      </div>
-            <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">Hamble</div>
-        </div>
-      </div>
-            <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">Leamington</div>
-        </div>
-      </div>
-       <div class="info-item">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Location</div>
-          <div class="info-value">New Forest</div>
-        </div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon">🕐</div>
         <div>
           <div class="info-label">Opening Hours</div>
-          <div class="info-value">Mon–Sun: 24/7 </div>
+          <div class="info-value">Mon–Sun: 24/7</div>
         </div>
       </div>
       <div class="info-item">
-        <div class="info-icon">📞</div>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 0 0 .22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
         <div>
           <div class="info-label">Phone</div>
           <div class="info-value">074 2113 8725</div>
         </div>
       </div>
       <div class="info-item">
-        <div class="info-icon">✉️</div>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
         <div>
           <div class="info-label">Email</div>
           <div class="info-value">info@abstyres.co.uk</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Coverage</div>
+          <div class="info-value">South of England</div>
         </div>
       </div>
     </div>
@@ -489,8 +813,8 @@
   <section class="cta-banner" id="contact">
     <h2>Get a Free Quote Today</h2>
     <p>Message us on WhatsApp — we'll get back to you fast.</p>
-    <a class="wa-btn" href="https://wa.me/447421138725" target="_blank" rel="noopener">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <a class="cta-wa-btn" href="https://wa.me/447421138725" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:inline;vertical-align:middle;margin-right:8px;">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
       WhatsApp Us Now
